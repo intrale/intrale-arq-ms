@@ -1,0 +1,158 @@
+<archetype-descriptor
+        xmlns="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 https://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd"
+        name="quickstart">
+   
+   <requiredProperties>
+        <requiredProperty key="msName" >
+        	<validationRegex>([A-Z][a-z0-9]+)((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?</validationRegex>
+        </requiredProperty>
+        <requiredProperty key="provider" />
+        <requiredProperty key="groupId" >
+            <defaultValue>ar.com.intrale</defaultValue>
+        </requiredProperty>        
+        <requiredProperty key="artifactId">
+            <defaultValue>${msName.toLowerCase()}</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="version">
+            <defaultValue>0.0.1</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="package">
+            <defaultValue>${groupId}</defaultValue>
+        </requiredProperty>
+   </requiredProperties>     
+	<fileSets>
+	    <fileSet filtered="true" encoding="UTF-8">
+	        <directory></directory>
+	        <includes>
+	            <include>compile.number</include>
+			</includes>
+		</fileSet>
+	    <fileSet filtered="true" encoding="UTF-8">
+	        <directory></directory>
+	        <includes>
+	            <include>pomParent.xml</include>
+			</includes>
+		</fileSet>
+		<fileSet filtered="true" encoding="UTF-8">
+	        <directory>.github/workflows</directory>
+	        <includes>
+	            <include>main.yml</include>
+			</includes>
+		</fileSet>
+		
+		<!-- core -->
+		<fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>core/src/main/java</directory>
+        </fileSet>
+        <fileSet  filtered="true" encoding="UTF-8">
+            <directory>core/src/main/resources</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>core/src/test/java</directory>
+        </fileSet>
+         <fileSet filtered="true">
+            <directory>core/src/test/resources</directory>
+         </fileSet>
+         <fileSet filtered="true">
+            <directory>core</directory>
+             <includes>
+	            <include>pom.xml</include>
+			</includes>
+         </fileSet>
+
+		<!-- services -->
+		<fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>services/src/main/java</directory>
+        </fileSet>
+        <fileSet  filtered="true" encoding="UTF-8">
+            <directory>services/src/main/resources</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>services/src/test/java</directory>
+        </fileSet>
+         <fileSet filtered="true">
+            <directory>services/src/test/resources</directory>
+         </fileSet>
+         <fileSet filtered="true">
+            <directory>services</directory>
+             <includes>
+	            <include>pom.xml</include>
+			</includes>
+         </fileSet>
+
+		<!-- client -->
+		<fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>client/src/main/java</directory>
+        </fileSet>
+        <fileSet  filtered="true" encoding="UTF-8">
+            <directory>client/src/main/resources</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>client/src/test/java</directory>
+        </fileSet>
+         <fileSet filtered="true">
+            <directory>client/src/test/resources</directory>
+         </fileSet>
+         <fileSet filtered="true">
+            <directory>client</directory>
+             <includes>
+	            <include>pom.xml</include>
+			</includes>
+         </fileSet>
+		
+	</fileSets>
+    
+   <!-- <modules> -->
+   
+   		<!--<Module id="${rootArtifactId}-core" dir="core" name="${rootArtifactId}-core" >
+      		<fileSets>
+	            <fileSet filtered="true" packaged="true" encoding="UTF-8">
+	                <directory>src/main/java</directory>
+	            </fileSet>
+	            <fileSet  filtered="true" encoding="UTF-8">
+	                <directory>src/main/resources</directory>
+	            </fileSet>
+	            <fileSet filtered="true" packaged="true" encoding="UTF-8">
+	                <directory>src/test/java</directory>
+	            </fileSet>
+	             <fileSet filtered="true">
+	                <directory>src/test/resources</directory>
+	             </fileSet>
+	  	    </fileSets>
+   		</Module -->
+   		<!-- <module id="${rootArtifactId}-services" dir="services" name="${rootArtifactId}-services">
+	   		<fileSets>
+	            <fileSet filtered="true" packaged="true" encoding="UTF-8">
+	                <directory>src/main/java</directory>
+	            </fileSet>
+	            <fileSet  filtered="true" encoding="UTF-8">
+	                <directory>src/main/resources</directory>
+	            </fileSet>
+	            <fileSet filtered="true" packaged="true" encoding="UTF-8">
+	                <directory>src/test/java</directory>
+	            </fileSet>
+	             <fileSet filtered="true">
+	                <directory>src/test/resources</directory>
+	             </fileSet>
+	        </fileSets>
+   		</module> -->
+   		<!-- <module id="${rootArtifactId}-client" dir="client" name="${rootArtifactId}-client">
+	   		<fileSets>
+	            <fileSet filtered="true" packaged="true" encoding="UTF-8">
+	                <directory>src/main/java</directory>
+	            </fileSet>
+	            <fileSet  filtered="true" encoding="UTF-8">
+	                <directory>src/main/resources</directory>
+	            </fileSet>
+	            <fileSet filtered="true" packaged="true" encoding="UTF-8">
+	                <directory>src/test/java</directory>
+	            </fileSet>
+	             <fileSet filtered="true">
+	                <directory>src/test/resources</directory>
+	             </fileSet>
+	        </fileSets>
+   		</module> -->   
+   <!-- </modules> -->
+        
+</archetype-descriptor>

@@ -1,0 +1,39 @@
+name: CI intrale-arq-ms
+
+on:
+  push:
+    branches: [ main ]
+  repository_dispatch:
+jobs:
+  build: 
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download source code
+      uses: actions/checkout@v3
+    - name: JDK Setup
+      uses: actions/setup-java@v2
+      with:
+          java-version: '11' # The JDK version to make available on the path.
+          distribution: 'temurin'
+          java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
+          architecture: x64 # (x64 or x86) - defaults to x64    
+    - name: Deploy to Github Package Registry
+      env:
+        PARENT_VERSION: ${{ env.PARENT_VERSION }}
+        VERSION_TARGET: ${{ env.VERSION_TARGET }}
+        MAVEN_SERVER_USERNAME: ${{ secrets.MAVEN_SERVER_USERNAME }}
+        MAVEN_SERVER_PASSWORD: ${{ secrets.MAVEN_SERVER_PASSWORD }}
+      run: |
+        mkdir -p ~/.m2
+        echo "<settings><servers><server><id>github</id><username>${MAVEN_SERVER_USERNAME}</username><password>${MAVEN_SERVER_PASSWORD}</password></server></servers></settings>" > ~/.m2/settings.xml
+        mvn -e -X deploy
+    - name: Delete old packages
+      uses: actions/delete-package-versions@v3
+      with:
+        owner: 'llarreta'
+        repo: 'intrale'
+        package-name: 'ar.com.intrale.intrale-arq-ms'
+        min-versions-to-keep: 3
+        token: ${{ secrets.MAVEN_SERVER_PASSWORD }}        
